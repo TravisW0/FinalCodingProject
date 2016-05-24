@@ -1,11 +1,21 @@
 package rocket.app.view;
 
+import java.awt.Button;
+import java.awt.TextField;
+
+import com.sun.xml.ws.org.objectweb.asm.Label;
+
 import eNums.eAction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import rocket.app.MainApp;
 import rocketCode.Action;
 import rocketData.LoanRequest;
+
+
 
 public class MortgageController {
 
@@ -23,6 +33,41 @@ public class MortgageController {
 	//		Button   -  button to calculate the loan payment
 	//		Label    -  to show error messages (exception throw, payment exception)
 
+	
+	//Specified controls
+	@FXML
+	private TextField txtIncome;
+
+	@FXML
+	private TextField txtExpenses;
+
+	@FXML
+	private TextField txtCreditScore;
+
+	@FXML
+	private TextField txtHouseCost;
+
+	@FXML
+	private ComboBox<String> cmbTerm;
+
+	@FXML
+	private Label lblMortgagePayment;
+
+	
+	ObservableList<String> loanList = FXCollections.observableArrayList("15", "30");
+	
+	@FXML
+	private Button btnCalculate;
+	
+	@FXML
+	private Button btnExit;
+	
+	@FXML
+	private void initialize() {
+		cmbTerm.setValue(loanList.get(0));
+		cmbTerm.setItems(loanList);
+	}
+	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
@@ -42,6 +87,10 @@ public class MortgageController {
 		//			set the loan request details...  rate, term, amount, credit score, downpayment
 		//			I've created you an instance of lq...  execute the setters in lq
 
+		
+		
+		
+		
 		a.setLoanRequest(lq);
 		
 		//	send lq as a message to RocketHub		
